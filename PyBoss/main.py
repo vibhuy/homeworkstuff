@@ -1,6 +1,15 @@
 import datetime
 import csv
 import os
+import argparse
+
+parser = argparse.ArgumentParser(description='Reformat the given input file containing employee data')
+parser.add_argument('Input_file',   help='''Provide the input file name 
+                                            including the relative path if not in current directory''')
+parser.add_argument('Output_file',  help='''Provide the output file name
+                                            including the relative path if not in current directory''')
+arguments = parser.parse_args()
+
 
 reformatted_file_data = []
 us_state_abbrev = {'Alabama': 'AL',
@@ -55,19 +64,13 @@ us_state_abbrev = {'Alabama': 'AL',
                    'Wyoming': 'WY',
                   }
 
-#Prompt the user to enter the file details
-filename    = input("Please provide the file name:")
-
-input_path  = os.path.join(filename+".csv")
-output_path = os.path.join("reformatted_employee_data.csv")
-
-def main():
+def main(Input_file, Output_file):
     """Reads the input file
     Reformats the data and writes in to an output file
     """
-    readFile(input_path)
-    writeFile(output_path)
-    print("File processed and Output reformatted")
+    readFile(Input_file)
+    writeFile(Output_file)
+    print(Input_file+"-> Input File processed. \n"+ Output_file +"-> Output File generated")
 
 def readFile(inputFilepath):
     """Reads the input file and reformats as required
@@ -102,7 +105,7 @@ def writeFile(outputFilepath):
     Args:
         outputFilepath(string) : Path where the output file should be placed
     """
-    with open(output_path, "w") as csvfile:
+    with open(outputFilepath, "w") as csvfile:
         fieldnames = ["Emp ID", "First Name", "Last Name", "DOB", "SSN", "State"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames, lineterminator='\n')
         writer.writeheader()
@@ -111,4 +114,4 @@ def writeFile(outputFilepath):
 if __name__ == "__main__":
     """Program to read the input file and generate a reformatted output file
     """
-    main()
+    main(arguments.Input_file, arguments.Output_file)

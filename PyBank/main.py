@@ -1,5 +1,13 @@
 import os
 import csv
+import argparse
+
+parser = argparse.ArgumentParser(description='Present the Financial Analysis of a provided budget file')
+parser.add_argument('Input_file',   help='''Provide the input file name 
+                                            including the relative path if not in current directory''')
+parser.add_argument('Output_file',  help='''Provide the output file name
+                                            including the relative path if not in current directory''')
+arguments = parser.parse_args()
 
 #Housekeeping
 count           = 0
@@ -12,16 +20,13 @@ incmonth        = " "
 decmonth        = " "
 averages        = []
 
-#Prompt the user to enter the file details
-filename    = input("Please provide the file name(without file extension):")
-header      = input("Does your file have a header? (y)es or (n)o:")
-csvpath     = os.path.join(filename+".csv")
-
-def main():
+def main(Input_file, Output_file):
     """Read the input file and calculate the total months and revenue
     along with monthly revenue differences and identify the months with
     the greatest change.
     """
+    header      = input("Does your file have a header? (y)es or (n)o:")
+    csvpath     = os.path.join(Input_file)
     with open(csvpath,newline="") as csvfile:
         csvreader = csv.reader(csvfile,delimiter= ",")
 
@@ -35,7 +40,7 @@ def main():
             setGreatestchanges(row[0])
 
         printAnalysis()
-        writeAnalysis()
+        writeAnalysis(Output_file)
 
 def calcTotalRevenue(monthRevenue):
     """Calculate total months and revenue
@@ -105,8 +110,8 @@ def printAnalysis():
     print("Greatest Increase in Revenue: "+ incmonth + " ($"+ str(increase)+")")
     print("Greatest Decrease in Revenue: "+ decmonth + " ($"+ str(decrease)+")")
 
-def writeAnalysis():
-    output_path = os.path.join("output.txt")
+def writeAnalysis(output_file):
+    output_path = os.path.join(output_file)
     with open(output_path, 'w') as txtfile:
         txtfile.write("Financial Analysis")
         txtfile.write("\n----------------------------")
@@ -120,4 +125,5 @@ if __name__ == "__main__":
     """Program to calculate the total revenue, months,
     average change and greatest change in revenue based on the input file
     """
-    main()
+    main(arguments.Input_file, arguments.Output_file)
+    
