@@ -5,10 +5,11 @@ total_votes            = 0
 candidates             = []
 Votes_perCandidate     = []
 
-#Prompt the user to provide the file name
-filename    = input("Please provide the file name(without file extension):")
-header      = input("Does your file have a header? (y)es or (n)o:")
-csvpath     = os.path.join(filename+".csv")
+#Prompt the user to provide the file names
+inputFilename       = input("Please provide the input file name:")
+header              = input("Does your input file have a header? (y)es or (n)o:")
+outputFilename      = input("Please provide the output file name:")
+csvpath             = os.path.join(inputFilename)
 
 def main():
     """Read the input file and calculate the total votes, votes per candidate
@@ -41,10 +42,10 @@ def calculate_Total_Votes(candidate_name):
         Votes_perCandidate.append(1)
 
 def print_write_Analysis():
-    output_path         = os.path.join("output.txt")
-    greatest_total      = 0
+    output_Filepath         = os.path.join(outputFilename)
+    greatest_total          = 0
 
-    with open(output_path, 'w') as txtfile:                        
+    with open(output_Filepath, 'w') as txtfile:                        
         print(" ")
         print("Election Results")
         print("-------------------------")
