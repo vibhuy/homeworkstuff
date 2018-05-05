@@ -2,6 +2,7 @@ import datetime
 import csv
 import os
 import argparse
+import us_state_abbrev
 
 parser = argparse.ArgumentParser(description='Reformat the given input file containing employee data')
 parser.add_argument('Input_file',   help='''Provide the input file name 
@@ -12,57 +13,6 @@ arguments = parser.parse_args()
 
 
 reformatted_file_data = []
-us_state_abbrev = {'Alabama': 'AL',
-                   'Alaska': 'AK',
-                   'Arizona': 'AZ',
-                   'Arkansas': 'AR',
-                   'California': 'CA',
-                   'Colorado': 'CO',
-                   'Connecticut': 'CT',
-                   'Delaware': 'DE',
-                   'Florida': 'FL',
-                   'Georgia': 'GA',
-                   'Hawaii': 'HI',
-                   'Idaho': 'ID',
-                   'Illinois': 'IL',
-                   'Indiana': 'IN',
-                   'Iowa': 'IA',
-                   'Kansas': 'KS',
-                   'Kentucky': 'KY',
-                   'Louisiana': 'LA',
-                   'Maine': 'ME',
-                   'Maryland': 'MD',
-                   'Massachusetts': 'MA',
-                   'Michigan': 'MI',
-                   'Minnesota': 'MN',
-                   'Mississippi': 'MS',
-                   'Missouri': 'MO',
-                   'Montana': 'MT',
-                   'Nebraska': 'NE',
-                   'Nevada': 'NV',
-                   'New Hampshire': 'NH',
-                   'New Jersey': 'NJ',
-                   'New Mexico': 'NM',
-                   'New York': 'NY',
-                   'North Carolina': 'NC',
-                   'North Dakota': 'ND',
-                   'Ohio': 'OH',
-                   'Oklahoma': 'OK',
-                   'Oregon': 'OR',
-                   'Pennsylvania': 'PA',
-                   'Rhode Island': 'RI',
-                   'South Carolina': 'SC',
-                   'South Dakota': 'SD',
-                   'Tennessee': 'TN',
-                   'Texas': 'TX',
-                   'Utah': 'UT',
-                   'Vermont': 'VT',
-                   'Virginia': 'VA',
-                   'Washington': 'WA',
-                   'West Virginia': 'WV',
-                   'Wisconsin': 'WI',
-                   'Wyoming': 'WY',
-                  }
 
 def main(Input_file, Output_file):
     """Reads the input file
@@ -95,7 +45,7 @@ def readFile(inputFilepath):
                 "Last Name": lname,
                 "DOB": dob,
                 "SSN": ssn,
-                "State":us_state_abbrev[state]
+                "State":us_state_abbrev.us_state_abbrev[state]
                 }
             )
 
