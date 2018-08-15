@@ -152,7 +152,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 }
 
 // Retrieve data from the CSV file and execute everything below
-var file = "https://raw.githubusercontent.com/the-Coding-Boot-Camp-at-UT/UTAUS201804DATA2-Class-Repository-DATA/master/16-D3/HOMEWORK/Instructions/data/data.csv?token=Ai1X4oQ6Ti40LrCFXlbUKrwGvHWADgUSks5bccmgwA%3D%3D"
+var file = "https://raw.githubusercontent.com/the-Coding-Boot-Camp-at-UT/UTAUS201804DATA2-Class-Repository-DATA/master/16-D3/HOMEWORK/Instructions/data/data.csv?token=Ai1X4pH1hd38btvRGVxVEqKbQlfNkx-9ks5bffYAwA%3D%3D"
 d3.csv(file).then(successHandle, errorHandle);
 
 function errorHandle(error){
